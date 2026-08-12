@@ -12,7 +12,7 @@ def test_home():
 def test_health():
     client = app.test_client()
 
-    response = client.get("/health")
+    response = cient.get("/health")
 
     assert response.status_code == 200
     assert response.json["status"] == "healthy"
