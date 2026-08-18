@@ -17,6 +17,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy
-        run: echo "application deployed successfully"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build docker Image
+        run: docker build -t myapp:v1 .
+
 
