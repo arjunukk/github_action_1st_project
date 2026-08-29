@@ -22,10 +22,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Debug OIDC claims
-        uses: github/actions-oidc-debugger@main
-        with:
-          audience: sts.amazonaws.com
+      - name: Check GitHub OIDC token
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Ref: $GITHUB_REF"
+          echo "Job: $GITHUB_JOB"
+          echo "OIDC token URL exists: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
