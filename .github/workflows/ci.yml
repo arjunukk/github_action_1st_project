@@ -27,8 +27,14 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::491144990032:role/GitHubActions-ECR-Role
           aws-region: ap-south-1
+      - name: Login to amzon ECR
+        uses: aws-actions/amazon-ecr-login@v2
       - name: Build docker Image
         run: docker build -t myapp:v1 .
+      - name: Tag Docker Image
+        run: docker tag myapp:v1 491144990032.dkr.ecr.ap-south-1.amazonaws.com/myapp:v1
+      - name: Push Docker Image to ECR
+        run: docker push 491144990032.dkr.ecr.ap-south-1.amazonaws.com/myapp:v1
       - name: docker image
         run: docker images
 
